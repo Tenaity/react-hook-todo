@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemContext";
+import { AuthContext } from "../contexts/AuthContext";
 const Navbar = () => {
+  const { isAuthenticated, toggleAuth } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
   const { isLightTheme, dark, light } = theme;
   const style = isLightTheme ? light : dark;
@@ -10,6 +12,11 @@ const Navbar = () => {
       <ul>
         <li>Home</li>
         <li>About</li>
+        <li>
+          <button onClick={toggleAuth}>
+            {isAuthenticated ? <span>SignOut</span> : <span>Login</span>}
+          </button>
+        </li>
       </ul>
     </div>
   );

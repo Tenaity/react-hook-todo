@@ -1,14 +1,16 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { TodoContext } from "../contexts/TodoContext";
 const TodoForm = ({ handleAddTodo }) => {
-  const [title, setTitle] = useState("aaa");
+  const { addTodo } = useContext(TodoContext);
+  const [title, setTitle] = useState("");
 
   const handleChangeTodo = (e) => {
     setTitle(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddTodo({
+    addTodo({
       id: uuidv4(),
       title,
     });
