@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
@@ -11,6 +11,9 @@ const AuthContextProvider = ({ children }) => {
     isAuthenticated,
     toggleAuth,
   };
+  useEffect(() => {
+    alert(isAuthenticated ? "Login Successful" : "Login Failure");
+  }, [isAuthenticated]);
   return (
     <AuthContext.Provider value={AuthContextData}>
       {children}
